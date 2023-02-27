@@ -1,4 +1,3 @@
-
 #include "Stack.h"
 
 template <typename T>
@@ -27,7 +26,7 @@ ArrayStack<T>::ArrayStack() : top{0}, sz{10}, data{new T[10]}
     template <typename T>
     ArrayStack<T>::ArrayStack(const ArrayStack &s) : top{s.top}, sz{s.sz}, data{new T[s.sz]}
     {
-        for(int i=0; i<top; i++) data[i] = s.data[i]
+        for(int i=0; i<top; i++) data[i] = s.data[i];
     }
 
     template <typename T>
