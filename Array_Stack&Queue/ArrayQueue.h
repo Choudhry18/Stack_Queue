@@ -1,14 +1,12 @@
-#include "Queue.h"
-
 template<typename T>
 class ArrayQueue:public Queue<T> {
 public:
         ArrayQueue():head{0},tail{0},sz{10},data{new T[10]} {}
         ~ArrayQueue() {delete [] data;}
         void enqueue(const T &t);
-        T dequeue() {}
-        T peek() const {}
-        bool isEmpty() const {}
+        T dequeue();
+        T peek() const;
+        bool isEmpty() const;
 private:
         int head,tail;
         int sz;
@@ -28,4 +26,23 @@ void ArrayQueue<T>::enqueue(const T &t) {
         }
         data[tail] = t;
         tail=(tail+1)%sz;
+}
+
+template<typename T>
+T ArrayQueue<T>::dequeue() {
+        if(isEmpty()) throw std::out_of_range("Queue is empty");
+        T ret = data[head];
+        head = (head+1)%sz;
+        return ret;
+}
+
+template<typename T>
+T ArrayQueue<T>::peek() const {
+        if(isEmpty()) throw std::out_of_range("Queue is empty");
+        return data[head];
+}
+
+template<typename T>
+bool ArrayQueue<T>::isEmpty() const {
+        return head == tail;
 }
