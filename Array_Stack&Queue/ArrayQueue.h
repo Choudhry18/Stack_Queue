@@ -5,7 +5,7 @@ class ArrayQueue:public Queue<T>
 {
 public:
         ArrayQueue();
-        ~ArrayQueue() {delete [] data;}
+        ~ArrayQueue() {delete [] data};
         void enqueue(const T &t);
         T dequeue();
         T peek() const;
@@ -39,7 +39,6 @@ void ArrayQueue<T>::enqueue(const T &t) {
 
 template <typename T>
 T ArrayQueue<T>::dequeue() {
-        if(isEmpty()) throw std::out_of_range("Queue is empty");
         T ret = data[head];
         head = (head+1)%sz;
         return ret;
@@ -47,7 +46,6 @@ T ArrayQueue<T>::dequeue() {
 
 template <typename T>
 T ArrayQueue<T>::peek() const {
-        if(isEmpty()) throw std::out_of_range("Queue is empty");
         return data[head];
 }
 
