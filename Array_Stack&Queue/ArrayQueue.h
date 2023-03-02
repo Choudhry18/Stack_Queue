@@ -1,19 +1,28 @@
+#include "Queue.h"
+
 template<typename T>
-class ArrayQueue:public Queue<T> {
+class ArrayQueue:public Queue<T>
+{
 public:
-        ArrayQueue():head{0},tail{0},sz{10},data{new T[10]} {}
+        ArrayQueue();
         ~ArrayQueue() {delete [] data;}
         void enqueue(const T &t);
         T dequeue();
         T peek() const;
         bool isEmpty() const;
 private:
-        int head,tail;
+        int head;
+        int tail;
         int sz;
         T* data;
 };
 
-template<typename T>
+template <typename T>
+ArrayQueue<T>::ArrayQueue() : head{0}, tail{0}, sz{10}, data{new T[10]}
+{
+}
+
+template <typename T>
 void ArrayQueue<T>::enqueue(const T &t) {
         if((tail+1)%sz==head) {
                 T *tmp = new T[sz*2];
@@ -28,7 +37,7 @@ void ArrayQueue<T>::enqueue(const T &t) {
         tail=(tail+1)%sz;
 }
 
-template<typename T>
+template <typename T>
 T ArrayQueue<T>::dequeue() {
         if(isEmpty()) throw std::out_of_range("Queue is empty");
         T ret = data[head];
@@ -36,13 +45,13 @@ T ArrayQueue<T>::dequeue() {
         return ret;
 }
 
-template<typename T>
+template <typename T>
 T ArrayQueue<T>::peek() const {
         if(isEmpty()) throw std::out_of_range("Queue is empty");
         return data[head];
 }
 
-template<typename T>
+template <typename T>
 bool ArrayQueue<T>::isEmpty() const {
         return head == tail;
 }
