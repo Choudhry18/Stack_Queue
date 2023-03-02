@@ -5,7 +5,7 @@ class ArrayQueue:public Queue<T>
 {
 public:
         ArrayQueue();
-        ~ArrayQueue() {delete [] data};
+        ~ArrayQueue() {delete [] data;}
         void enqueue(const T &t);
         T dequeue();
         T peek() const;
